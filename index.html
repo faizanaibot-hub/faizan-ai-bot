@@ -72,8 +72,8 @@
    if(!k){status.textContent='Please enter your license key.';return;}
   supabase
   .from('Licence')
-  .select('Licence key')
-  .eq('Licence key', k)
+  .select('Licence_key')
+  .eq('Licence_key', k)
   .then(({ data, error }) => {
     if (data && data.length > 0) {
       status.style.color = '#49ffb0';
