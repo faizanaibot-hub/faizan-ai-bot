@@ -70,7 +70,29 @@
  function activate(){
    const k=(keyInput.value||'').trim();
    if(!k){status.textContent='Please enter your license key.';return;}
-   if(k.toUpperCase()===storedKey){
+  supabase
+  .from('Licence')
+  .select('Licence_key')
+  .eq('Licence_key', k)
+  .then(({ data, error }) => {
+    if (data && data.length > 0) {
+      status.style.color = '#49ffb0';
+status.textContent = 'License accepted. Opening dashboard...';
+document.getElementById('lgStatusKey').textContent = k;
+document.getElementById('lgState').textContent = 'Active';
+document.getElementById('lgState').style.color = '#49ffb0';
+document.getElementById('lgPlan').textContent = 'Pro Max';
+setTimeout(() => {
+    gate.style.display = 'none';
+}, 450);
+     
+    } else {
+      status.style.color = '#ff718d';
+status.textContent = 'Invalid license key.';
+     
+    }
+  });
+  
      status.style.color='#49ffb0';status.textContent='License accepted. Opening dashboard…';
      document.getElementById('lgStatusKey').textContent=k;
      document.getElementById('lgState').textContent='Active';
