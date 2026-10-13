@@ -68,7 +68,7 @@
  // Standalone-file activation is local only. Replace this check with a server-side
  // license service for real customer-specific keys and revocation.
  function activate(){
-   const k=(keyInput.value||'')
+   const k=(keyInput.value||'')console.log(k, storedKey);
    if(!k){status.textContent='Please enter your license key.';return;}
   supabase
   .from('Licence')
